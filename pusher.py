@@ -25,10 +25,9 @@ class Pusher():
         key = eval('{}.getKey(data)'.format(config['module']))
         if key is not None:
             if key in self.datas:
-                self.datas[key]['mdmsg'] += self.separator
-                self.datas[key]['mdmsg'] += data['mdmsg']
-                self.datas[key]['textmsg'] += self.separator
-                self.datas[key]['textmsg'] += data['textmsg']
+                for syntax in ['mdmsg', 'textmsg']:
+                    self.datas[key][syntax] += self.separator
+                    self.datas[key][syntax] += data[syntax]
             else:
                 self.datas[key] = data
 
